@@ -239,7 +239,7 @@ IMPORTANT: Store your final plan in state['debt_reduction'] and ensure it aligns
                 session_id=session_id,
                 new_message=user_content
             ):
-                if event.is_final_response() and event.author == self.coordinator_agent.name:
+                if event.is_final_response():
                     break
             
             updated_session = self.session_service.get_session(
