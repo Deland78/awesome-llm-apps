@@ -13,7 +13,7 @@ from pydantic import BaseModel, Field
 import csv
 from io import StringIO
 
-from google.adk.agents import LlmAgent, SequentialAgent
+from google.adk.agents import LlmAgent, SequentialAgent  # type: ignore
 from google.adk.sessions import InMemorySessionService
 from google.adk.runners import Runner
 from google.genai import types
