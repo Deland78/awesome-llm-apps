@@ -513,7 +513,7 @@ def display_debt_reduction(plan: Dict[str, Any]):
             if "impact" in rec:
                 st.markdown(f"_Impact: {rec['impact']}_")
 
-def parse_csv_transactions(file_content) -> List[Dict[str, Any]]:
+def parse_csv_transactions(file_content) -> Dict[str, Any]:
     """Parse CSV file content into a list of transactions"""
     try:
         # Read CSV content
