@@ -1,88 +1,56 @@
-## 📊 Build a Multi-Agent Personal Finance Coach
-Fully functional multi-agent app with step-by-step instructions (100% opensource)
-
-This Streamlit application implements a comprehensive financial advisory system using Google's Agent Development Kit (ADK) with multiple specialized AI agents.
+## AI Financial Coach Agent with Google ADK
+The AI Financial Coach is a personalized financial advisor powered by Google's Agent Development Kit (ADK). It coordinates a team of Gemini agents to analyze budgets, craft savings plans, and optimize debt payoff strategies based on the data you provide.
 
 ### Features
-👬 Multi-Agent Financial Analysis System
+- Budget Analysis Agent highlights spending patterns and offers optimization tips
+- Savings Strategy Agent sizes an emergency fund, recommends allocations, and suggests automation tactics
+- Debt Reduction Agent compares avalanche and snowball paydown plans with actionable next steps
+- CSV ingestion plus manual expense entry, backed by Plotly charts for spending and income vs. expense comparisons
+- Streamlit UI with tabbed insights for budget, savings, and debt views
 
-Budget Analysis Agent: Analyzes spending patterns and recommends optimizations
+### How It Works
+1. **Data collection** – Supply monthly income, dependants, optional CSV transactions, manual expenses, and debts via the Streamlit interface.
+2. **Agent chain** – A `SequentialAgent` executes the Budget, Savings, and Debt specialists in order, sharing results through the ADK session state.
+3. **Visualization** – The app renders the agent output as interactive charts and tables so financial recommendations are easy to act on.
 
-Savings Strategy Agent: Creates personalized savings plans and emergency fund strategies
+### Getting Started
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
+   cd awesome-llm-apps/starter_ai_agents/xai_finance_agent
+   ```
+2. **Configure your Gemini API key**
+   ```bash
+   cp .env.example .env
+   # edit .env and set GOOGLE_API_KEY=your_api_key_here
+   ```
+   Grab a free key from Google AI Studio: https://aistudio.google.com/apikey
+3. **Install dependencies**
+   ```bash
+   python -m pip install -r requirements.txt
+   ```
+4. **Run the Streamlit app**
+   ```bash
+   streamlit run ai_financial_coach_agent.py
+   ```
 
-Debt Reduction Agent: Develops optimized debt payoff strategies using avalanche and snowball methods
+### CSV File Format
+| Column   | Description                       |
+|----------|-----------------------------------|
+| Date     | Transaction date (YYYY-MM-DD)     |
+| Category | Expense category label            |
+| Amount   | Transaction amount (numbers only) |
 
-🫰 Expense Analysis:
-
-Supports both CSV upload and manual expense entry
-
-Visual breakdown of spending by category
-
-Automated expense categorization and pattern detection
-
-💰 Savings Recommendations:
-
-Emergency fund sizing and building strategies
-
-Custom savings allocations across different goals
-
-💸 Debt Management:
-
-Multiple debt handling with interest rate optimization
-
-Comparison between avalanche and snowball methods
-
-Visual debt payoff timeline and interest savings analysis
-
-Actionable debt reduction recommendations
-
-📊 Interactive Visualizations:
-
-Pie charts for expense breakdown
-
-Bar charts for income vs. expenses
-
-Debt comparison graphs
-The application follows a multi-agent coordination pattern typical of complex AI systems:
-
-Data Collection: Users enter financial information (income, expenses, debts) through the Streamlit interface, either manually or via CSV upload.
-
-Agent Chain Execution: The app uses SequentialAgent, a workflow agent that executes its sub-agents in the order they are specified in the list:
-
-Budget Analysis Agent evaluates spending patterns and identifies areas for reduction
-
-Savings Strategy Agent develops savings plans based on budget analysis
-
-Debt Reduction Agent creates optimized debt payoff strategies using both analytical methods
-
-State Management: Each agent stores its results in the shared session state, allowing subsequent agents to build upon prior analysis. This state-passing mechanism enables a coherent analysis pipeline without duplicating work.
-
-Visualization: The application processes agent outputs into interactive visualizations using Plotly, making complex financial insights accessible and actionable.
-
-### How to get Started?
-
-1. Clone the GitHub repository
-```bash
-git clone https://github.com/Shubhamsaboo/awesome-llm-apps.git
-cd awesome-llm-apps/ai_agent_tutorials/xai_finance_agent
+Example:
+```text
+Date,Category,Amount
+2024-01-01,Housing,1200.00
+2024-01-02,Food,150.50
+2024-01-03,Transportation,45.00
 ```
+A matching template is available from the app sidebar.
 
-2. Install the required dependencies:
-
-```bash
-cd awesome-llm-apps/ai_agent_tutorials/xai_finance_agent
-pip install -r requirements.txt
-```
-
-3. Get your OpenAI API Key
-
-- Sign up for an [xAI API account](https://console.x.ai/)
-- Set your XAI_API_KEY environment variable.
-```bash
-export XAI_API_KEY='your-api-key-here'
-```
-
-4. Build and Run the team of AI Agents
-   see: https://www.theunwindai.com/p/build-a-multi-agent-personal-finance-coach)
-
-6. Open your web browser and navigate to the URL provided in the console output to interact with the AI financial agent through the playground interface.
+### Usage Tips
+- Combine CSV uploads with manual expenses to capture cash or ad-hoc spending.
+- Enter every outstanding debt with balance, APR, and minimum payment to unlock payoff projections.
+- Review the Budget, Savings, and Debt tabs after each submission to track recommendations and progress.
